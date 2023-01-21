@@ -924,6 +924,9 @@ static LIBSSH2_SFTP *sftp_init(LIBSSH2_SESSION *session)
                 session->sftpInit_state = libssh2_NB_state_sent3;
 
             /* if less than 9, we remain in this state to send more later on */
+            if (libssh2_channel_eof (session->sftpInit_channel)) {
+                _libssh2_error (session, LIBSSH2_ERROR_SOCKET_SEND, "Channel closed");
+            }
         }
     }
 
