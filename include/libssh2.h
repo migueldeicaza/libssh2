@@ -1450,9 +1450,17 @@ typedef void (*libssh2_trace_handler_func)(LIBSSH2_SESSION*,
                                            void *,
                                            const char *,
                                            size_t);
-LIBSSH2_API int libssh2_trace_sethandler(LIBSSH2_SESSION *session,
-                                         void *context,
-                                         libssh2_trace_handler_func callback);
+  LIBSSH2_API int libssh2_trace_sethandler(LIBSSH2_SESSION *session,
+					   void *context,
+					   libssh2_trace_handler_func callback);
+  
+  LIBSSH2_API int libssh2_bcrypt_pbkdf(const char *pass,
+				       size_t passlen,
+				       const uint8_t *salt,
+				       size_t saltlen,
+				       uint8_t *key,
+				       size_t keylen,
+				       unsigned int rounds);
 
 #ifdef __cplusplus
 } /* extern "C" */
