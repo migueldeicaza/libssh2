@@ -679,7 +679,7 @@ libssh2_openssh_pem_parse_data(LIBSSH2_SESSION * session,
 {
   struct string_buf *buffer = NULL;
   int ret;
-  ret = _libssh2_string_buf_free (session, passphrase, b64data, b64datalen, &buffer);
+  ret = _libssh2_openssh_pem_parse_data (session, passphrase, b64data, b64datalen, &buffer);
   if (ret == 0) {
     *decrypted_buf = malloc (buffer->len);
     *size = buffer->len;
