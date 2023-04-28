@@ -1454,13 +1454,10 @@ typedef void (*libssh2_trace_handler_func)(LIBSSH2_SESSION*,
 					   void *context,
 					   libssh2_trace_handler_func callback);
   
-  LIBSSH2_API int libssh2_bcrypt_pbkdf(const char *pass,
-				       size_t passlen,
-				       const uint8_t *salt,
-				       size_t saltlen,
-				       uint8_t *key,
-				       size_t keylen,
-				       unsigned int rounds);
+  LIBSSH2_API int libssh2_openssh_pem_parse_data(LIBSSH2_SESSION * session,
+						 const unsigned char *passphrase,
+						 const char *b64data, size_t b64datalen,
+						 void **decrypted_buf, int *size);
 
 #ifdef __cplusplus
 } /* extern "C" */

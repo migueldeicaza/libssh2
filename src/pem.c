@@ -672,6 +672,24 @@ out:
 }
 
 int
+libssh2_openssh_pem_parse_data(LIBSSH2_SESSION * session,
+			       const unsigned char *passphrase,
+			       const char *b64data, size_t b64datalen,
+			       void **decrypted_buf, int *size)
+{
+  struct string_buf *buffer = NULL;
+  int ret;
+  ret = _libssh2_string_buf_free (session, passphrase, b64data, b64datalen, &buffer);
+  if (ret == 0) {
+    *decrypted_buf = malloc (buffer->len);
+    *size = buffer->len;
+    memcpy (*decrypted_buf, buffer->data, buffer->len);
+  }
+  _libssh2_string_buf_free (buffer);
+  return ret;
+}
+
+int
 _libssh2_openssh_pem_parse(LIBSSH2_SESSION * session,
                            const unsigned char *passphrase,
                            FILE * fp, struct string_buf **decrypted_buf)
