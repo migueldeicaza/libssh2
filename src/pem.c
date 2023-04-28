@@ -685,7 +685,7 @@ libssh2_openssh_pem_parse_data(LIBSSH2_SESSION * session,
     *size = buffer->len;
     memcpy (*decrypted_buf, buffer->data, buffer->len);
   }
-  _libssh2_string_buf_free (buffer);
+  _libssh2_string_buf_free (session, buffer);
   return ret;
 }
 
