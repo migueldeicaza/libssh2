@@ -1454,6 +1454,11 @@ LIBSSH2_API int libssh2_trace_sethandler(LIBSSH2_SESSION *session,
                                          void *context,
                                          libssh2_trace_handler_func callback);
 
+LIBSSH2_API int libssh2_openssh_pem_parse_data(LIBSSH2_SESSION * session,
+					       const unsigned char *passphrase,
+					       const char *b64data, size_t b64datalen,
+					       void **decrypted_buf, int *size);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
